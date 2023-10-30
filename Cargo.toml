@@ -1,0 +1,6 @@
+[workspace]
+members = ["lazy-attr", "lazy-attr-core", "examples/*"]
+
+[workspace.dependencies]
+lazy-attr = { path = "lazy-attr" }
+lazy-attr-core = { path = "lazy-attr-core" }

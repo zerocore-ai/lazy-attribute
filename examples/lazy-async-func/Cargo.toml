@@ -1,0 +1,8 @@
+[package]
+name = "lazy-async-func"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+lazy-attr = { workspace = true, features = ["async"] }
+tokio = { version = "1.33.0", features = ["macros", "rt", "rt-multi-thread"] }

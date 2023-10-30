@@ -1,0 +1,7 @@
+[package]
+name = "lazy-func"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+lazy-attr = { workspace = true }
