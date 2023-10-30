@@ -30,8 +30,7 @@ pub(super) fn expand(fn_syntax: ItemFn) -> TokenStream {
             fn_inputs,
             "Arguments are not supported on #[lazy] functions",
         )
-        .to_compile_error()
-        .into();
+        .to_compile_error();
     }
 
     #[cfg(not(feature = "async"))]
@@ -40,8 +39,7 @@ pub(super) fn expand(fn_syntax: ItemFn) -> TokenStream {
             fn_asyncness,
             "Async functions are only supported when the `async` feature is enabled",
         )
-        .to_compile_error()
-        .into();
+        .to_compile_error();
     }
 
     let Ok(crate_name) = crate_name(CRATE_NAME) else {
@@ -49,8 +47,7 @@ pub(super) fn expand(fn_syntax: ItemFn) -> TokenStream {
             fn_name,
             format!("Could not find `{CRATE_NAME}` crate in your `Cargo.toml`"),
         )
-        .to_compile_error()
-        .into();
+        .to_compile_error();
     };
 
     let crate_name = match crate_name {

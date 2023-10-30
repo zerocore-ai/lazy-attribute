@@ -1,7 +1,7 @@
 [package]
 name = "lazy-attr"
 version = "0.1.0"
-description = "Convenient macro for lazy function call"
+description = "This crate provides a convenient attribute macro for lazy function execution"
 keywords = []
 categories = []
 include = ["/src", "README.md", "LICENSE-APACHE", "LICENSE-MIT"]
@@ -14,9 +14,13 @@ repository = "https://github.com/appcypher/lazy-attr"
 authors = ["Stephen Akinyemi <appcypher@outlook.com>"]
 
 [dependencies]
-async-once-cell = "0.5.3"
+async-once-cell = "0.5"
 lazy-attr-core = { workspace = true }
-once_cell = "1.18.0"
+once_cell = "1.18"
+
+[dev-dependencies]
+tokio = { version = "1.33.0", features = ["macros", "rt", "rt-multi-thread"] }
+trybuild = "1.0.85"
 
 [features]
 default = []
