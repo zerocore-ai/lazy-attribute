@@ -23,38 +23,79 @@
   </p>
 </div>
 
-##
+The `lazy_attribute` crate provides a `lazy` attribute procedural macro that allows you to lazily evaluate a function and cache its result.
 
 ## Outline
 
-- [Installation](#installation)
-- [Testing the Project](#testing-the-project)
+- [Usage](#usage)
 - [Contributing](#contributing)
 - [Getting Help](#getting-help)
 - [External Resources](#external-resources)
 - [License](#license)
 
-## Installation
+## Usage
 
-### Using `cargo`
+Add this to your `Cargo.toml`:
 
-```console
-cargo install lazy-attribute
+```toml
+[dependencies]
+lazy-attribute = "0.1"
 ```
 
-## Testing the Project
+### Examples
 
-- Run tests
+Lazily evaluate a function:
 
-  ```console
-  cargo test
-  ```
+```rust
+use lazy_attribute::lazy;
+
+fn main() {
+    println!("{}", foo());  // Outputs: Called once! 42
+    println!("{}", foo());  // Outputs: 42
+}
+
+#[lazy]
+fn foo() -> i32 {
+    println!("Called once!");
+    42
+}
+```
+
+Lazily evaluate an async function (requires `async` feature):
+
+```rust
+use lazy_attribute::lazy;
+
+#[tokio::main]
+async fn main() {
+    println!("{}", foo().await);  // Outputs: Called once! 42
+    println!("{}", foo().await);  // Outputs: 42
+}
+
+#[lazy(async)]
+async fn foo() -> i32 {
+    println!("Called once!");
+    42
+}
+```
+
+### Crate Features
+
+- `async` - Enables support for lazily evaluating async functions.
 
 ## Contributing
 
 :balloon: We're thankful for any feedback and help in improving our project!
 We have a [contributing guide](./CONTRIBUTING.md) to help you get involved. We
 also adhere to our [Code of Conduct](./CODE_OF_CONDUCT.md).
+
+### Testing the Project
+
+- Run tests
+
+  ```console
+  cargo test --all-features
+  ```
 
 ### Formatting
 

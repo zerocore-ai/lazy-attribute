@@ -4,13 +4,13 @@ version = "0.1.0"
 description = "This crate provides a convenient attribute macro for lazy function execution"
 keywords = []
 categories = []
-include = ["/src", "README.md", "LICENSE-APACHE", "LICENSE-MIT"]
+include = ["/src", "README.md", "../LICENSE-APACHE", "../LICENSE-MIT"]
 license = "Apache-2.0 or MIT"
-readme = "../README.md"
+readme = "README.md"
 edition = "2021"
 rust-version = "1.67"
 documentation = "https://docs.rs/lazy-attribute"
-repository = "https://github.com/appcypher/lazy-attribute"
+repository = "https://github.com/zerocore-ai/lazy-attribute"
 authors = ["Stephen Akinyemi <appcypher@outlook.com>"]
 
 [dependencies]
