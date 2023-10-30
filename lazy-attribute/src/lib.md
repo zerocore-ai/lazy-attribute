@@ -30,7 +30,7 @@ async fn main() {
     println!("{}", foo().await);  // Outputs: 42
 }
 
-#[lazy(async)]
+#[lazy]
 async fn foo() -> i32 {
     println!("Called once!");
     42
