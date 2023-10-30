@@ -1,6 +1,6 @@
 [package]
 name = "lazy-attribute"
-version = "0.1.0"
+version = "0.1.1"
 description = "This crate provides a convenient attribute macro for lazy function execution"
 keywords = []
 categories = []
@@ -18,7 +18,7 @@ doctest = false
 
 [dependencies]
 async-once-cell = "0.5"
-lazy-attribute-core = { version = "0.1.0", workspace = true }
+lazy-attribute-core = { version = "0.1.1", path = "../lazy-attribute-core" }
 once_cell = "1.18"
 
 [dev-dependencies]

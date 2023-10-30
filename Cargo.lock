@@ -118,7 +118,7 @@ dependencies = [
 
 [[package]]
 name = "lazy-attribute"
-version = "0.1.0"
+version = "0.1.1"
 dependencies = [
  "async-once-cell",
  "lazy-attribute-core",
@@ -129,7 +129,7 @@ dependencies = [
 
 [[package]]
 name = "lazy-attribute-core"
-version = "0.1.0"
+version = "0.1.1"
 dependencies = [
  "proc-macro-crate",
  "proc-macro2",
