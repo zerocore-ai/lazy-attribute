@@ -2,10 +2,10 @@ name: ☂ Code Coverage
 
 on:
   push:
-    branches: [ main ]
+    branches: [main]
 
   pull_request:
-    branches: [ '**' ]
+    branches: ["**"]
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
@@ -32,10 +32,10 @@ jobs:
 
       - name: Generate Code coverage
         env:
-          CARGO_INCREMENTAL: '0'
-          LLVM_PROFILE_FILE: "lazy-attr-%p-%m.profraw"
-          RUSTFLAGS: '-Zprofile -Ccodegen-units=1 -Cinline-threshold=0 -Clink-dead-code -Coverflow-checks=off'
-          RUSTDOCFLAGS: '-Zprofile -Ccodegen-units=1 -Cinline-threshold=0 -Clink-dead-code -Coverflow-checks=off'
+          CARGO_INCREMENTAL: "0"
+          LLVM_PROFILE_FILE: "lazy-attribute-%p-%m.profraw"
+          RUSTFLAGS: "-Zprofile -Ccodegen-units=1 -Cinline-threshold=0 -Clink-dead-code -Coverflow-checks=off"
+          RUSTDOCFLAGS: "-Zprofile -Ccodegen-units=1 -Cinline-threshold=0 -Clink-dead-code -Coverflow-checks=off"
         run: cargo test --all-features
 
       - name: Install grcov

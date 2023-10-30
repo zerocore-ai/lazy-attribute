@@ -118,23 +118,23 @@ checksum = "af150ab688ff2122fcef229be89cb50dd66af9e01a4ff320cc137eecc9bacc38"
 name = "lazy-async-func"
 version = "0.1.0"
 dependencies = [
- "lazy-attr",
+ "lazy-attribute",
  "tokio",
 ]
 
 [[package]]
-name = "lazy-attr"
+name = "lazy-attribute"
 version = "0.1.0"
 dependencies = [
  "async-once-cell",
- "lazy-attr-core",
+ "lazy-attribute-core",
  "once_cell",
  "tokio",
  "trybuild",
 ]
 
 [[package]]
-name = "lazy-attr-core"
+name = "lazy-attribute-core"
 version = "0.1.0"
 dependencies = [
  "anyhow",
@@ -152,7 +152,7 @@ dependencies = [
 name = "lazy-func"
 version = "0.1.0"
 dependencies = [
- "lazy-attr",
+ "lazy-attribute",
 ]
 
 [[package]]

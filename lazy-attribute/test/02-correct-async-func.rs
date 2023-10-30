@@ -1,16 +1,17 @@
-use lazy_attr::lazy;
+use lazy_attribute::lazy;
 
 //--------------------------------------------------------------------------------------------------
 // Functions
 //--------------------------------------------------------------------------------------------------
 
-fn main() {
-    println!("{}", foo());
-    println!("{}", foo());
+#[tokio::main]
+async fn main() {
+    println!("{}", foo().await);
+    println!("{}", foo().await);
 }
 
 #[lazy]
-fn foo() -> i32 {
+async fn foo() -> i32 {
     println!("Called once!");
     42
 }

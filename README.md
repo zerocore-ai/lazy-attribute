@@ -1,23 +1,23 @@
 <div align="center">
-  <h1 align="center">lazy-attr</h1>
+  <h1 align="center">lazy-attribute</h1>
 
   <p>
-    <a href="https://crates.io/crates/lazy-attr">
-      <img src="https://img.shields.io/crates/v/lazy-attr?label=crates" alt="Crate">
+    <a href="https://crates.io/crates/lazy-attribute">
+      <img src="https://img.shields.io/crates/v/lazy-attribute?label=crates" alt="Crate">
     </a>
-    <a href="https://codecov.io/gh/appcypher/lazy-attr">
-      <img src="https://codecov.io/gh/appcypher/lazy-attr/branch/main/graph/badge.svg?token=SOMETOKEN" alt="Code Coverage"/>
+    <a href="https://codecov.io/gh/zerocore-ai/lazy-attribute">
+      <img src="https://codecov.io/gh/zerocore-ai/lazy-attribute/branch/main/graph/badge.svg?token=SOMETOKEN" alt="Code Coverage"/>
     </a>
-    <a href="https://github.com/appcypher/lazy-attr/actions?query=">
-      <img src="https://github.com/appcypher/lazy-attr/actions/workflows/tests_and_checks.yml/badge.svg" alt="Build Status">
+    <a href="https://github.com/zerocore-ai/lazy-attribute/actions?query=">
+      <img src="https://github.com/zerocore-ai/lazy-attribute/actions/workflows/tests_and_checks.yml/badge.svg" alt="Build Status">
     </a>
-    <a href="https://github.com/appcypher/lazy-attr/blob/main/LICENSE-APACHE">
+    <a href="https://github.com/zerocore-ai/lazy-attribute/blob/main/LICENSE-APACHE">
       <img src="https://img.shields.io/badge/License-Apache%202.0-blue.svg" alt="License-Apache">
     </a>
-    <a href="https://github.com/appcypher/lazy-attr/blob/main/LICENSE-MIT">
+    <a href="https://github.com/zerocore-ai/lazy-attribute/blob/main/LICENSE-MIT">
       <img src="https://img.shields.io/badge/License-MIT-blue.svg" alt="License-MIT">
     </a>
-    <a href="https://docs.rs/lazy-attr">
+    <a href="https://docs.rs/lazy-attribute">
       <img src="https://img.shields.io/static/v1?label=Docs&message=docs.rs&color=blue" alt="Docs">
     </a>
   </p>
@@ -39,7 +39,7 @@
 ### Using `cargo`
 
 ```console
-cargo install lazy-attr
+cargo install lazy-attribute
 ```
 
 ## Testing the Project
@@ -81,7 +81,7 @@ hooks. Please run this before every commit and/or push.
 
 ### Conventional Commits
 
-This project *lightly* follows the [Conventional Commits
+This project _lightly_ follows the [Conventional Commits
 convention][commit-spec-site] to help explain
 commit history and tie in with our release process. The full specification
 can be found [here][commit-spec]. We recommend prefixing your commits with
@@ -120,7 +120,6 @@ Unless you explicitly state otherwise, any contribution intentionally
 submitted for inclusion in the work by you, as defined in the Apache-2.0
 license, shall be dual licensed as above, without any additional terms or
 conditions.
-
 
 [apache]: https://www.apache.org/licenses/LICENSE-2.0
 [cargo-expand]: https://github.com/dtolnay/cargo-expand

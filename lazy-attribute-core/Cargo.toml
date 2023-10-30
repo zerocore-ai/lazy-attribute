@@ -1,7 +1,7 @@
 [package]
-name = "lazy-attr-core"
+name = "lazy-attribute-core"
 version = "0.1.0"
-description = "Core implementation of the lazy-attr macro"
+description = "Core implementation of the lazy-attribute macro"
 keywords = []
 categories = []
 include = ["/src", "README.md", "LICENSE-APACHE", "LICENSE-MIT"]
@@ -9,8 +9,8 @@ license = "Apache-2.0 or MIT"
 readme = "../README.md"
 edition = "2021"
 rust-version = "1.67"
-documentation = "https://docs.rs/lazy-attr"
-repository = "https://github.com/appcypher/lazy-attr"
+documentation = "https://docs.rs/lazy-attribute"
+repository = "https://github.com/appcypher/lazy-attribute"
 authors = ["Stephen Akinyemi <appcypher@outlook.com>"]
 
 [lib]

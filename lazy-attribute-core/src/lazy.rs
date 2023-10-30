@@ -7,7 +7,7 @@ use syn::{parse_quote, ItemFn, ReturnType};
 // Constants
 //--------------------------------------------------------------------------------------------------
 
-const CRATE_NAME: &str = "lazy-attr";
+const CRATE_NAME: &str = "lazy-attribute";
 
 //--------------------------------------------------------------------------------------------------
 // Functions

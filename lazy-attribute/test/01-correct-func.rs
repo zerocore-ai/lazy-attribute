@@ -1,4 +1,4 @@
-use lazy_attr::lazy;
+use lazy_attribute::lazy;
 
 //--------------------------------------------------------------------------------------------------
 // Functions
@@ -10,7 +10,7 @@ fn main() {
 }
 
 #[lazy]
-fn foo(nope: u32) -> i32 {
+fn foo() -> i32 {
     println!("Called once!");
     42
 }

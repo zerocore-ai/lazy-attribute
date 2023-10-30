@@ -1,6 +1,6 @@
 [workspace]
-members = ["examples/*", "lazy-attr", "lazy-attr-core"]
+members = ["examples/*", "lazy-attribute", "lazy-attribute-core"]
 
 [workspace.dependencies]
-lazy-attr = { path = "lazy-attr" }
-lazy-attr-core = { path = "lazy-attr-core" }
+lazy-attribute = { path = "lazy-attribute" }
+lazy-attribute-core = { path = "lazy-attribute-core" }
