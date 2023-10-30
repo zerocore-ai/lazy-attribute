@@ -1,5 +1,7 @@
 ignore:
-  - "tests"
+  - "examples"
+  - "lazy-attribute/test"
+  - "lazy-attribute-core"
 
 comment:
   layout: "reach, diff, flags, files"
