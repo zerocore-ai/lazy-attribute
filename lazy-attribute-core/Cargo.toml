@@ -13,7 +13,6 @@ include = [
 license = "MIT OR Apache-2.0"
 readme = "../lazy-attribute/README.md"
 edition = "2021"
-rust-version = "1.67"
 documentation = "https://docs.rs/lazy-attribute"
 repository = "https://github.com/zerocore-ai/lazy-attribute"
 authors = ["Stephen Akinyemi <appcypher@outlook.com>"]
