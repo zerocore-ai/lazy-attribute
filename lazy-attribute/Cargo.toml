@@ -1,6 +1,6 @@
 [package]
 name = "lazy-attribute"
-version = "0.1.1"
+version = "0.1.2"
 description = "This crate provides a convenient attribute macro for lazy function execution"
 keywords = []
 categories = []
