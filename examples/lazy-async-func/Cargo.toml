@@ -4,5 +4,5 @@ version = "0.1.0"
 edition = "2021"
 
 [dependencies]
-lazy-attribute = { workspace = true, features = ["async"] }
+lazy-attribute = { path = "../../lazy-attribute", features = ["async"] }
 tokio = { version = "1.33.0", features = ["macros", "rt", "rt-multi-thread"] }

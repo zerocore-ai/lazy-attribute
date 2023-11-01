@@ -135,10 +135,18 @@ dependencies = [
  "proc-macro2",
  "quote",
  "syn",
+ "tokio",
 ]
 
 [[package]]
 name = "lazy-func"
+version = "0.1.0"
+dependencies = [
+ "lazy-attribute",
+]
+
+[[package]]
+name = "lazy-map"
 version = "0.1.0"
 dependencies = [
  "lazy-attribute",

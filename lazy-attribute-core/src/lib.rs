@@ -4,21 +4,22 @@
 
 mod lazy;
 
+use lazy::{LazyArgs, MapArgsSyntax};
 use proc_macro::TokenStream;
 
 //--------------------------------------------------------------------------------------------------
 // Attribute Procedural Macros
 //--------------------------------------------------------------------------------------------------
 
-/// Provides the `#[lazy]` attribute to lazily evaluate functions.
-///
-/// The macro expands the function into a wrapper that caches the result
-/// in a static `OnceCell`.
-///
-/// Works for both synchronous and asynchronous
-/// functions (with `async` feature).
 #[proc_macro_attribute]
-pub fn lazy(_: TokenStream, item: TokenStream) -> TokenStream {
+pub fn lazy_ref(_attr: TokenStream, item: TokenStream) -> TokenStream {
     let fn_syntax = syn::parse_macro_input!(item as syn::ItemFn);
-    lazy::expand(fn_syntax).into()
+    lazy::expand(LazyArgs::Ref, fn_syntax).into()
+}
+
+#[proc_macro_attribute]
+pub fn lazy_map(attr: TokenStream, item: TokenStream) -> TokenStream {
+    let lazy_map_args_syntax = syn::parse_macro_input!(attr as MapArgsSyntax);
+    let fn_syntax = syn::parse_macro_input!(item as syn::ItemFn);
+    lazy::expand(LazyArgs::Map(lazy_map_args_syntax), fn_syntax).into()
 }

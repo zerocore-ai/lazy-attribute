@@ -1,4 +1,4 @@
-use lazy_attribute::lazy_ref;
+use lazy_attribute::lazy_map;
 
 //--------------------------------------------------------------------------------------------------
 // Main
@@ -20,8 +20,8 @@ struct Foo();
 // Functions
 //--------------------------------------------------------------------------------------------------
 
-#[lazy_ref()]
-fn get_foo() -> Foo {
+#[lazy_map(Foo, |r| r.unwrap())]
+fn get_foo() -> Result<Foo, ()> {
     println!("get_foo called once!");
-    Foo()
+    Ok(Foo())
 }
