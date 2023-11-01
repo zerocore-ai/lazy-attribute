@@ -21,7 +21,7 @@ struct Foo();
 //--------------------------------------------------------------------------------------------------
 
 #[lazy_ref()]
-fn get_foo() -> Foo {
+fn get_foo(nope: i32) -> Foo {
     println!("get_foo called once!");
     Foo()
 }

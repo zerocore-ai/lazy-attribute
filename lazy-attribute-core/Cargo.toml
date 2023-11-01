@@ -29,3 +29,6 @@ syn = { version = "2.0.38", features = ["full"] }
 [features]
 default = []
 async = []
+
+[dev-dependencies]
+tokio = { version = "1.33.0", features = ["macros", "rt", "rt-multi-thread"] }

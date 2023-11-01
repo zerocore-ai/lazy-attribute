@@ -1,0 +1,17 @@
+error: expected one of: `|`, identifier, `::`
+  --> test/05-unsupported-map-attr.rs:23:17
+   |
+23 | #[lazy_map(Foo, (1 + 1))]
+   |                 ^
+
+error[E0425]: cannot find function `get_foo` in this scope
+ --> test/05-unsupported-map-attr.rs:8:23
+  |
+8 |     println!("{:#?}", get_foo());
+  |                       ^^^^^^^ not found in this scope
+
+error[E0425]: cannot find function `get_foo` in this scope
+ --> test/05-unsupported-map-attr.rs:9:23
+  |
+9 |     println!("{:#?}", get_foo());
+  |                       ^^^^^^^ not found in this scope
