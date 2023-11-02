@@ -22,6 +22,7 @@
     </a>
   </p>
 </div>
+
 `lazy-attributes` provides attribute macros for simplifying working with lazily evaluated functions.
 
 Functions decorated with `#[lazy_ref]` or `#[lazy_map]` will only be executed the first time they are called.
@@ -115,3 +116,6 @@ Just like `lazy_ref`, `lazy_map` can also be used with async functions when `asy
 ## Crate Features
 
 - `async` - Enables support for lazily evaluating async functions.
+
+[crate::lazy_map]: https://docs.rs/lazy-attribute/latest/lazy_attribute/attr.lazy_map.html
+[crate::lazy_ref]: https://docs.rs/lazy-attribute/latest/lazy_attribute/attr.lazy_ref.html
