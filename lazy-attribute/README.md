@@ -25,12 +25,10 @@
 
 `lazy-attributes` provides attribute macros for simplifying working with lazily evaluated functions.
 
-Functions decorated with `#[lazy_ref]` or `#[lazy_map]` will only be executed the first time they are called.
+Functions decorated with `#[lazy_ref]` will only be executed the first time they are called.
 On subsequent calls, the cached return value is returned.
 
 ## Usage
-
-### lazy_ref
 
 With [`lazy_attribute::lazy_ref`][crate::lazy_ref], you can annotate a function that you want to lazily evaluate:
 
@@ -83,39 +81,12 @@ async fn main() {
 }
 ```
 
-### lazy_map
-
-There are times when you want to lazily evaluate a function, but you want to map the result of the function to a different type.
-
-For example, you may want to lazily evaluate a function that returns a `Result<String, std::io::Error>`, but you want to map the result to a `String`.
-
-[`lazy_attribute::lazy_map`][crate::lazy_map] lets you provide a closure that will be used to map the result of the function to a different type.
-
-```rust
-use lazy_attribute::lazy_map;
-
-#[lazy_map(String, |result| result.unwrap_or_default())]
-fn get_string() -> Result<String, std::io::Error> {
-    println!("Called once!");
-    Ok(String::from("Hello, world!"))
-}
-
-fn main() {
-    println!("{}", get_string());  // Outputs: Called once! Hello, world!
-    println!("{}", get_string());  // Outputs: Hello, world!
-}
-```
-
-Just like `lazy_ref`, `lazy_map` can also be used with async functions when `async` feature is enabled
-
 ## Caveats
 
 - `lazy_*` macros do not support functions with arguments. You will get an error telling you arguments are not supported.
-- `lazy_map` only takes a closure or function identifier as attribute argument. It does not support arbitrary expressions.
 
 ## Crate Features
 
 - `async` - Enables support for lazily evaluating async functions.
 
-[crate::lazy_map]: https://docs.rs/lazy-attribute/latest/lazy_attribute/attr.lazy_map.html
 [crate::lazy_ref]: https://docs.rs/lazy-attribute/latest/lazy_attribute/attr.lazy_ref.html

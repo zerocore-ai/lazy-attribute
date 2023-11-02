@@ -15,9 +15,6 @@ extern crate self as lazy_attribute;
 #[doc = include_str!("lazy_ref.md")]
 pub use lazy_attribute_core::lazy_ref;
 
-#[doc = include_str!("lazy_map.md")]
-pub use lazy_attribute_core::lazy_map;
-
 //--------------------------------------------------------------------------------------------------
 // Re-export Modules
 //--------------------------------------------------------------------------------------------------
@@ -42,8 +39,6 @@ mod test {
         t.pass("test/01-correct-func.rs");
         #[cfg(feature = "async")]
         t.pass("test/02-correct-async-func.rs");
-        t.pass("test/03-correct-map.rs");
-        t.compile_fail("test/04-unsupported-args.rs");
-        t.compile_fail("test/05-unsupported-map-attr.rs")
+        t.compile_fail("test/03-unsupported-args.rs");
     }
 }
