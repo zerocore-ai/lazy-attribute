@@ -1,10 +1,7 @@
 use proc_macro2::TokenStream;
 use proc_macro_crate::{crate_name, FoundCrate};
 use quote::{format_ident, quote};
-use syn::{
-    parse::{Parse, ParseStream},
-    parse_quote, ExprClosure, Ident, ItemFn, Path, ReturnType, Token,
-};
+use syn::{parse_quote, ItemFn, ReturnType};
 
 //--------------------------------------------------------------------------------------------------
 // Constants
@@ -13,31 +10,10 @@ use syn::{
 const CRATE_NAME: &str = "lazy-attribute";
 
 //--------------------------------------------------------------------------------------------------
-// Types
-//--------------------------------------------------------------------------------------------------
-
-pub(super) enum LazyArgs {
-    Ref,
-    Map(MapArgsSyntax),
-}
-
-#[allow(dead_code)]
-pub(super) struct MapArgsSyntax {
-    r#type: Path,
-    comma: Token![,],
-    closure: MapValueSyntax,
-}
-
-enum MapValueSyntax {
-    Closure(ExprClosure),
-    Path(Path),
-}
-
-//--------------------------------------------------------------------------------------------------
 // Functions
 //--------------------------------------------------------------------------------------------------
 
-pub(super) fn expand(attr_args: LazyArgs, fn_syntax: ItemFn) -> TokenStream {
+pub(super) fn expand(fn_syntax: ItemFn) -> TokenStream {
     let fn_name = &fn_syntax.sig.ident;
     let fn_attrs = &fn_syntax.attrs;
     let fn_vis = &fn_syntax.vis;
@@ -80,23 +56,9 @@ pub(super) fn expand(attr_args: LazyArgs, fn_syntax: ItemFn) -> TokenStream {
         FoundCrate::Name(name) => format_ident!("{name}"),
     };
 
-    let (map_fn, map_fn_return_type) = match attr_args {
-        LazyArgs::Ref => (quote! { (|v| v) }, quote!(#fn_return_type)),
-        LazyArgs::Map(MapArgsSyntax {
-            r#type,
-            closure: MapValueSyntax::Closure(closure),
-            ..
-        }) => (quote! { (#closure) }, quote!(#r#type)),
-        LazyArgs::Map(MapArgsSyntax {
-            r#type,
-            closure: MapValueSyntax::Path(path),
-            ..
-        }) => (quote! { (|r| #path(r)) }, quote!(#r#type)),
-    };
-
     let static_gen = fn_asyncness.is_none().then_some(quote! {
         #[allow(non_upper_case_globals)]
-        static #static_name: #crate_name::__internal::once_cell::sync::OnceCell<#map_fn_return_type> =
+        static #static_name: #crate_name::__internal::once_cell::sync::OnceCell<#fn_return_type> =
             #crate_name::__internal::once_cell::sync::OnceCell::new();
     });
 
@@ -104,20 +66,16 @@ pub(super) fn expand(attr_args: LazyArgs, fn_syntax: ItemFn) -> TokenStream {
     #[cfg(feature = "async")]
     let static_gen = static_gen.or(Some(quote! {
         #[allow(non_upper_case_globals)]
-        static #static_name: #crate_name::__internal::async_once_cell::OnceCell<#map_fn_return_type> =
+        static #static_name: #crate_name::__internal::async_once_cell::OnceCell<#fn_return_type> =
             #crate_name::__internal::async_once_cell::OnceCell::new();
     }));
 
     let fn_gen = fn_asyncness.is_none().then_some(quote! {
         #(#fn_attrs)*
-        #fn_vis fn #fn_name ( #fn_inputs ) -> &'static #map_fn_return_type {
+        #fn_vis fn #fn_name ( #fn_inputs ) -> &'static #fn_return_type {
             #static_name
                 .get_or_init(|| {
-                    let v = {
-                        #(#fn_body_stmts)*
-                    };
-                    let f: fn(#fn_return_type) -> #map_fn_return_type = #map_fn;
-                    f(v)
+                    #(#fn_body_stmts)*
                 })
         }
     });
@@ -125,14 +83,10 @@ pub(super) fn expand(attr_args: LazyArgs, fn_syntax: ItemFn) -> TokenStream {
     #[cfg(feature = "async")]
     let fn_gen = fn_gen.or(Some(quote! {
         #(#fn_attrs)*
-        #fn_vis async fn #fn_name ( #fn_inputs ) -> &'static #map_fn_return_type {
+        #fn_vis async fn #fn_name ( #fn_inputs ) -> &'static #fn_return_type {
             #static_name
             .get_or_init(async move {
-                let v = {
-                    #(#fn_body_stmts)*
-                };
-                let f: fn(#fn_return_type) -> #map_fn_return_type = #map_fn;
-                f(v)
+                #(#fn_body_stmts)*
             })
             .await
         }
@@ -141,32 +95,5 @@ pub(super) fn expand(attr_args: LazyArgs, fn_syntax: ItemFn) -> TokenStream {
     quote! {
         #static_gen
         #fn_gen
-    }
-}
-
-//--------------------------------------------------------------------------------------------------
-// Trait Implementations
-//--------------------------------------------------------------------------------------------------
-
-impl Parse for MapArgsSyntax {
-    fn parse(input: ParseStream) -> syn::Result<Self> {
-        Ok(Self {
-            r#type: input.parse()?,
-            comma: input.parse()?,
-            closure: input.parse()?,
-        })
-    }
-}
-
-impl Parse for MapValueSyntax {
-    fn parse(input: ParseStream) -> syn::Result<Self> {
-        let lookahead = input.lookahead1();
-        if lookahead.peek(Token![|]) {
-            Ok(Self::Closure(input.parse()?))
-        } else if lookahead.peek(Ident) || lookahead.peek(Token![::]) {
-            Ok(Self::Path(input.parse()?))
-        } else {
-            Err(lookahead.error())
-        }
     }
 }

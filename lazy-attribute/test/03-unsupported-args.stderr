@@ -1,17 +1,17 @@
-error: expected one of: `|`, identifier, `::`
-  --> test/05-unsupported-map-attr.rs:23:17
+error: Arguments are not supported on #[lazy_*] functions
+  --> test/03-unsupported-args.rs:24:12
    |
-23 | #[lazy_map(Foo, (1 + 1))]
-   |                 ^
+24 | fn get_foo(nope: i32) -> Foo {
+   |            ^^^^^^^^^
 
 error[E0425]: cannot find function `get_foo` in this scope
- --> test/05-unsupported-map-attr.rs:8:23
+ --> test/03-unsupported-args.rs:8:23
   |
 8 |     println!("{:#?}", get_foo());
   |                       ^^^^^^^ not found in this scope
 
 error[E0425]: cannot find function `get_foo` in this scope
- --> test/05-unsupported-map-attr.rs:9:23
+ --> test/03-unsupported-args.rs:9:23
   |
 9 |     println!("{:#?}", get_foo());
   |                       ^^^^^^^ not found in this scope
