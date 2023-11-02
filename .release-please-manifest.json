@@ -1,4 +1,7 @@
 {
-  "lazy-attribute": "0.1.2",
-  "lazy-attribute-core": "0.1.2"
+  "lazy-attribute": "0.1.3",
+  "lazy-attribute-core": "0.1.2",
+  "examples/lazy-async-func": "0.1.1",
+  "examples/lazy-func": "0.1.1",
+  "examples/lazy-map": "0.1.1"
 }
