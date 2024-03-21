@@ -6,4 +6,4 @@ publish = false
 
 [dependencies]
 lazy-attribute = { path = "../../lazy-attribute", features = ["async"] }
-tokio = { version = "1.35.1", features = ["macros", "rt", "rt-multi-thread"] }
+tokio = { version = "1.36.0", features = ["macros", "rt", "rt-multi-thread"] }
