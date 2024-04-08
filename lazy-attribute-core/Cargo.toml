@@ -31,4 +31,4 @@ default = []
 async = []
 
 [dev-dependencies]
-tokio = { version = "1.36.0", features = ["macros", "rt", "rt-multi-thread"] }
+tokio = { version = "1.37.0", features = ["macros", "rt", "rt-multi-thread"] }
