@@ -21,7 +21,7 @@ lazy-attribute-core = { version = "0.1.4", path = "../lazy-attribute-core" }
 once_cell = "1.19"
 
 [dev-dependencies]
-tokio = { version = "1.37.0", features = ["macros", "rt", "rt-multi-thread"] }
+tokio = { version = "1.38.0", features = ["macros", "rt", "rt-multi-thread"] }
 trybuild = "1.0.91"
 
 [features]
